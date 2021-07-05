@@ -1,0 +1,19 @@
+{
+    "name": "budisteikul/mail",
+    "description": "Mail",
+    "authors": [
+        {
+            "name": "Budi",
+            "email": "aku@budi.my.id"
+        }
+    ],
+    "require": {
+    	"budisteikul/coresdk": "dev-master",
+        "html2text/html2text": "^4.2"
+    },
+    "autoload": {
+   		"psr-4": {
+        	"budisteikul\\mail\\": "src/"
+    	}
+	}
+}
