@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use budisteikul\mail\Models\Mail_Attachment;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Auth;
 
 class AttachmentController extends Controller
 {
@@ -51,10 +52,15 @@ class AttachmentController extends Controller
     {
         $attachment = Mail_Attachment::findOrFail($id);
         
-        print($attachment->file_url);
-        //$path = "../storage/logs/". $id;
-        //file_put_contents($path, file_get_contents($attachment->file_url));
-        //return response()->download($path, Str::ascii($attachment->file_name))->deleteFileAfterSend();
+        
+        $path = storage_path('app/temp/'. Auth::user()->id .'/') . $id;
+        
+        $client = new \GuzzleHttp\Client(['http_errors' => false]);
+        $client->request('GET', $attachment->file_url, [
+            'sink' => $path
+        ]);
+
+        return response()->download($path, Str::ascii($attachment->file_name))->deleteFileAfterSend();
     }
 
     /**
