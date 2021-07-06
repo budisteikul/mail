@@ -6,12 +6,35 @@ use budisteikul\mail\Models\Mail_Option;
 use budisteikul\mail\Models\Mail_Email;
 
    class MailHelper {
-   	   public static function get_email_from($string)
-   	   {
+   	public static function destroy_attachment($file,$user_id="")
+   	{
+   		if($user_id=="") $user_id = Auth::user()->id;
+   		\Cloudinary::config(array( 
+						"cloud_name" => env('CLOUDINARY_NAME'), 
+						"api_key" => env('CLOUDINARY_KEY'), 
+						"api_secret" => env('CLOUDINARY_SECRET') 
+					));
+					\Cloudinary\Uploader::destroy($file , Array('resource_type' => 'raw'));
+   	}
+
+   	public static function upload_attachment($file,$user_id="")
+   	{
+   		if($user_id=="") $user_id = Auth::user()->id;
+   		\Cloudinary::config(array( 
+							"cloud_name" => env('CLOUDINARY_NAME'), 
+							"api_key" => env('CLOUDINARY_KEY'), 
+							"api_secret" => env('CLOUDINARY_SECRET') 
+						));
+   		$upload = \Cloudinary\Uploader::upload($file , Array('resource_type' => 'raw','folder' => $user_id.'/attachments'));
+			return $upload;
+   	}
+
+   	public static function get_email_from($string)
+   	{
    	   		$pattern = '/[\._a-zA-Z0-9-]+@[\._a-zA-Z0-9-]+/i';
     		preg_match_all($pattern, $string, $matches);
     		return $matches[0][0];
-   	   }
+   	}
 
 	   public static function get_string_between($string, $start, $end)
 		{
