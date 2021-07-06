@@ -94,7 +94,7 @@ $(function(){
               </li>
               <li class="user-footer">
                 <div class="pull-left">
-                  <button type="button" onClick="window.location='{{ url('profiles/'.  Auth::user()->id) }}'" class="btn btn-default btn-flat">Edit Profile</button>
+                  <button type="button" onClick="window.location='{{ url('/cms/coresdk/account/setting') }}'" class="btn btn-default btn-flat">Edit Profile</button>
                 </div>
                 <div class="pull-right">
                   <a href="{{ route('logout') }}" onclick="event.preventDefault();

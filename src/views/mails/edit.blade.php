@@ -1,5 +1,6 @@
 @extends('mail::layouts.admin-lte.blank',['folder' => 'edit'])
 @section('title', 'Mailbox '. html_entity_decode('&raquo;') .' '. $template->title)
+@inject('MailHelper', 'budisteikul\mail\Helpers\MailHelper')
 @section('content')
 @push('scripts')
 <script>
@@ -188,7 +189,7 @@ function DELETE(id)
                   <div class="mailbox-attachment-info">
                     <a href="{{ route('mail_attachments.show',['attachment'=>$attachment->id]) }}" class="mailbox-attachment-name"><i class="fa fa-paperclip"></i> {{ $attachment->file_name }}</a>
                         <span class="mailbox-attachment-size">
-                          {{ \App\Classes\Mail\MailClass::bytesToHuman($attachment->file_size) }}
+                          {{ $MailHelper->bytesToHuman($attachment->file_size) }}
                           <button type="button" onClick="return DELETE('{{ $attachment->id }}')" class="btn btn-danger btn-xs pull-right"><i class="fa fa-trash"></i></button>
                         </span>
                     <input type="hidden" id="mail_old_attachments" name="mail_old_attachments[]" value="{{ $attachment->id }}">
