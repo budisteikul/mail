@@ -25,7 +25,7 @@ use budisteikul\mail\Models\Mail_Email;
 							"api_key" => env('CLOUDINARY_KEY'), 
 							"api_secret" => env('CLOUDINARY_SECRET') 
 						));
-   		$upload = \Cloudinary\Uploader::upload($file , Array('resource_type' => 'raw','folder' => $user_id.'/attachments'));
+   		$upload = \Cloudinary\Uploader::upload($file , Array('resource_type' => 'raw','folder' => env("APP_NAME").'/mail/'.$user_id.'/attachments'));
 			return $upload;
    	}
 
