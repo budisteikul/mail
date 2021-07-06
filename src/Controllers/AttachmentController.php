@@ -53,9 +53,9 @@ class AttachmentController extends Controller
         $attachment = Mail_Attachment::findOrFail($id);
         
         
-        $path = storage_path('app/temp/'. Auth::user()->id .'/') . $id;
-        Storage::makeDirectory(storage_path('app/temp/'. Auth::user()->id));
-
+        //$path = storage_path('app/temp/'. Auth::user()->id .'/') . $id;
+        //Storage::makeDirectory(storage_path('app/temp/'. Auth::user()->id));
+        $path = "../storage/logs/". $id;
         $client = new \GuzzleHttp\Client(['http_errors' => false]);
         $client->request('GET', $attachment->file_url, [
             'sink' => $path
