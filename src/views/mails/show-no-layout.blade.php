@@ -1,8 +1,13 @@
 @inject('MailHelper', 'budisteikul\mail\Helpers\MailHelper')
 @php
 	$content = $MailHelper->get_string_between($mail->body_html,'</head>','</html>');
+	if($content==""){
+		$content = $MailHelper->get_string_between($mail->body_html,'<body>','</body>');
+	}
 	$content = str_ireplace("<body","<div",$content);
-$content = str_ireplace("</body>","</div>",$content);
+	$content = str_ireplace("<body>","<div>",$content);
+	$content = str_ireplace("</body>","</div>",$content);
+	
 @endphp
 
 
