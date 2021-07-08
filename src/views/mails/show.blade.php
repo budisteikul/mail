@@ -140,10 +140,12 @@ function ARCHIVE()
 				  </span></h5>
               </div>
               <!-- /.mailbox-read-info -->
-              
+              <div class="box-footer">
+              	<button type="button" class="btn btn-default btn-flat" onClick="return VIEW_HTML()"><i class="fa fa-html5"></i> View as HTML</button>
+            	</div>
               <!-- /.mailbox-controls -->
               <div class="table-responsive mailbox-read-message">
-			   {!! nl2br(strip_tags($mail->body_plain)) !!}
+			   				{!! nl2br(strip_tags($mail->body_plain)) !!}
               </div>
               <!-- /.mailbox-read-message -->
             </div>
@@ -186,7 +188,7 @@ function ARCHIVE()
                 <button type="button" class="btn btn-default btn-flat" onClick="window.location.href='{{ route('mails.edit',['mail'=>$mail->id]) }}/?request=reply'"><i class="fa fa-reply"></i> Reply</button>
                 <button type="button" class="btn btn-default btn-flat" onClick="window.location.href='{{ route('mails.edit',['mail'=>$mail->id]) }}/?request=forward'"><i class="fa fa-share"></i> Forward</button>
               </div>
-              <button type="button" class="btn btn-default btn-flat" onClick="return VIEW_HTML()"><i class="fa fa-html5"></i> View HTML</button>
+              
               @if($mail->folder=='trash')
               <button type="button" class="btn btn-default btn-flat" onClick="return DELETE()"><i class="fa fa-trash-o"></i> Delete Forever</button>
               @else
