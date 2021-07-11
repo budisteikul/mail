@@ -176,6 +176,15 @@ function STORE_OPTION()
         <div class="box-body">
             <button id="btn-edit" onClick="CREATE()" type="button" class="btn btn-primary btn-flat"><span class="fa fa-plus"></span> Create </button>
         </div>
+        <style type="text/css">
+        .hideScroll {
+    			-ms-overflow-style: none;  /* Internet Explorer 10+ */
+    			scrollbar-width: none;  /* Firefox */
+				}
+				.hideScroll::-webkit-scrollbar { 
+    			display: none;  /* Safari and Chrome */
+				}
+      	</style>
         <div class="box-body" style="min-height:300px;">
           {!! $dataTable->table(['class'=>'table table-hover']) !!}
         </div>

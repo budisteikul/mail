@@ -61,18 +61,21 @@ class AccountsDataTable extends DataTable
                     ->parameters([
 						'dom'		   => '
 						<"row col-sm-12"
-						<"col-sm-6"l><"col-sm-6"f>
+						  <"col-sm-6"l><"col-sm-6"f>
 						>
+
 						<"row"
-						<"col-sm-12"
-						<"table-responsive mailbox-messages"
-							tr
+						  <"col-sm-12"
+						      <"table-responsive mailbox-messages hideScroll"
+							     tr
+						      >
+						  >
 						>
-						>
-						>
+
 						<"row col-sm-12"
-						<"col-sm-6"i><"col-sm-6"p>
-						>',
+						  <"col-sm-6"i><"col-sm-6"p>
+						>'
+                        ,
 						'order'	=> [],
                     ])
 					->ajax('/'.request()->path());
