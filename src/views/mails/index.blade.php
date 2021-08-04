@@ -16,6 +16,7 @@ function CHANGE(id,status)
 		url: '{{ route('mails.index') }}/'+ id
 		}).done(function( msg ) {
 			table.ajax.reload( null, false );
+			check_mail();
 		});
 	return false;
 }
@@ -56,6 +57,7 @@ function ARCHIVE()
 							}).done(function( msg ) {
 								RESTART_CHECKBOX();
 								table.ajax.reload( null, false );
+								check_mail();
 							});
 							
 						}
@@ -108,6 +110,7 @@ function DELETE()
 							}).done(function( msg ) {
 								RESTART_CHECKBOX();
 								table.ajax.reload( null, false );
+								check_mail();
 							});	
 							@else
 							$.ajax({
@@ -120,6 +123,7 @@ function DELETE()
 							}).done(function( msg ) {
 								RESTART_CHECKBOX();
 								table.ajax.reload( null, false );
+								check_mail();
 							});
 							@endif
 						}
@@ -166,6 +170,7 @@ function EMPTY()
 							}).done(function( msg ) {
 								RESTART_CHECKBOX();
 								table.ajax.reload( null, false );
+								check_mail();
 							});
 						
 						

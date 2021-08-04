@@ -21,6 +21,20 @@ use Illuminate\Http\File;
 
 class MailController extends Controller
 {
+
+	public function check()
+	{
+		$inbox = MailHelper::get_unread('inbox');
+		$junk = MailHelper::get_allmail('junk');
+		$trash = MailHelper::get_allmail('trash');
+		return response()->json([
+				'id' => '1',
+				'inbox' => $inbox,
+				'junk' => $junk,
+				'trash' => $trash
+			]);
+	}
+
     /**
      * Display a listing of the resource.
      *

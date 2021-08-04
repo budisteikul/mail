@@ -1,9 +1,31 @@
-	  @php
-		if($folder=="")
-		{
-			$folder = 'inbox';
-		}
-	  @endphp
+	  
+      @php
+        if($folder=="")
+        {
+            $folder = 'inbox';
+        }
+      @endphp
+
+
+      <script language="javascript">
+        $( document ).ready(function() {
+            check_mail();
+        });
+
+        function check_mail()
+        {
+            $.ajax({
+                type: 'GET',
+                url: '{{ route('mails.index') }}/check'
+                }).done(function( data ) {
+                    $('#inboxSpan').html(data.inbox);
+                    $('#junkSpan').html(data.junk);
+                    $('#trashSpan').html(data.trash);
+                });
+        }
+      </script>
+      
+      
       
       <div class="user-panel">
           @if($folder == "create" || $folder == "edit")
@@ -18,7 +40,7 @@
       
         <li class="{{ $folder=='inbox' ? 'active' : '' }}">
         	<a href="{{ route('mails.index') }}/folder/inbox">
-            	<i class="fa fa-inbox"></i> Inbox <span class="label label-primary pull-right">{{ $MailHelper->get_unread('inbox') }}</span>
+            	<i class="fa fa-inbox"></i> Inbox <span id="inboxSpan" class="label label-primary pull-right"></span>
             </a>
         </li>
         <li class="{{ $folder=='archive' ? 'active' : '' }}">
@@ -38,12 +60,12 @@
          </li>
          <li class="{{ $folder=='junk' ? 'active' : '' }}">
          	<a href="{{ route('mails.index') }}/folder/junk">
-            	<i class="fa fa-filter"></i> Junk <span class="label label-warning pull-right">{{ $MailHelper->get_unread('junk') }}</span>
+            	<i class="fa fa-filter"></i> Junk <span id="junkSpan" class="label label-warning pull-right"></span>
             </a>
          </li>
          <li class="{{ $folder=='trash' ? 'active' : '' }}">
          	<a href="{{ route('mails.index') }}/folder/trash">
-            	<i class="fa fa-trash-o"></i> Trash <span class="label label-danger pull-right">{{ $MailHelper->get_unread('trash') }}</span>
+            	<i class="fa fa-trash-o"></i> Trash <span id="trashSpan" class="label label-danger pull-right"></span>
             </a>
          </li>
       </ul>
