@@ -10,7 +10,7 @@ class Mail_Attachment extends Model
 {
     use Uuid;
 	
-	public $connection = Session::get('session_connection', env('DB_CONNECTION');
+	public $connection = Session::get('session_connection', env('DB_CONNECTION'));
 	protected $table = 'mail_attachments';
 	public $incrementing = false;
 	protected $keyType = 'string';
