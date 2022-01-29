@@ -9,6 +9,7 @@ class Mail_Email extends Model
 {
     use Uuid;
 	
+	public $connection = "pgsql";
 	protected $table = 'mail_emails';
 	public $incrementing = false;
 	protected $keyType = 'string';
