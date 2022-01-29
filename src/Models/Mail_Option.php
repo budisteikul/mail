@@ -4,12 +4,13 @@ namespace budisteikul\mail\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use budisteikul\mail\Traits\Uuid;
+use Illuminate\Support\Facades\Session;
 
 class Mail_Option extends Model
 {
     use Uuid;
 	
-	public $connection = $request->session()->get('session_connection', env('DB_CONNECTION');
+	public $connection = Session::get('session_connection', env('DB_CONNECTION');
 	protected $table = 'mail_options';
 	public $incrementing = false;
 	protected $keyType = 'string';
