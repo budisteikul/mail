@@ -10,7 +10,6 @@ class Mail_Attachment extends Model
 {
     use Uuid;
 	
-	public $connection = 'pgsql';
 	protected $table = 'mail_attachments';
 	public $incrementing = false;
 	protected $keyType = 'string';

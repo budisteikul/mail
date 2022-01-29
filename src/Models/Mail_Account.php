@@ -10,7 +10,6 @@ class Mail_Account extends Model
 {
     use Uuid;
 	
-	public $connection = Session::get('session_connection', env('DB_CONNECTION'));
 	protected $table = 'mail_accounts';
 	public $incrementing = false;
 	protected $keyType = 'string';
