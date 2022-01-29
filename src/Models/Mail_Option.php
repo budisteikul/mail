@@ -9,7 +9,7 @@ class Mail_Option extends Model
 {
     use Uuid;
 	
-	public $connection = "pgsql";
+	public $connection = $request->session()->get('session_connection', env('DB_CONNECTION');
 	protected $table = 'mail_options';
 	public $incrementing = false;
 	protected $keyType = 'string';
