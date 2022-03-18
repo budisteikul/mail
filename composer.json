@@ -15,5 +15,12 @@
    		"psr-4": {
         	"budisteikul\\mail\\": "src/"
     	}
-	}
+	},
+    "extra": {
+        "laravel": {
+            "providers": [
+                "budisteikul\\mail\\MailServiceProvider"
+            ]
+        }
+    }
 }
