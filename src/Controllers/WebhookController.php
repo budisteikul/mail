@@ -38,8 +38,20 @@ class WebhookController extends Controller
      */
     public function store(Request $request)
     {
-        $mail = Mail_Account::where('email',$request->input('recipient'))->first();
-			if(!$mail) exit();
+    		$recipient = $request->input('recipient');
+    		$check_word = substr($recipient,0,4);
+
+    		if($check_word=="ver.")
+    		{
+    			$recipient = env("MAIL_FROM_ADDRESS");
+    		}
+
+        	$mail = Mail_Account::where('email',$recipient)->first();
+			if(!$mail)
+			{
+				return response('OK', 200)->header('Content-Type', 'text/plain');
+			}
+
 			$user_id = $mail->user_id;
 			
 			$folder = "inbox";
@@ -66,7 +78,7 @@ class WebhookController extends Controller
 			if($request->input('timestamp')=="")  $timestamp = Carbon::now();
 			
 		    $mail_email = new Mail_Email;
-			$mail_email->recipient = $request->input('recipient');
+			$mail_email->recipient = $recipient;
 			$mail_email->sender = $request->input('sender');
 			$mail_email->from = $request->input('from');
 			$mail_email->subject = $request->input('subject');
@@ -128,6 +140,8 @@ class WebhookController extends Controller
 				curl_close($ch);
 		
 			}
+
+			return response('OK', 200)->header('Content-Type', 'text/plain');
     }
 
     /**
