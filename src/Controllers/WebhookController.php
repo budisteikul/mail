@@ -46,7 +46,7 @@ class WebhookController extends Controller
 
     		if($check_word=="ver.")
     		{
-    			$subject = $recipient .' '. $subject;
+    			$subject = '['. $recipient .'] '. $subject;
     			$recipient = env("MAIL_FROM_ADDRESS");
     		}
 
