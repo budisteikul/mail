@@ -38,11 +38,15 @@ class WebhookController extends Controller
      */
     public function store(Request $request)
     {
+    		$subject = null;
     		$recipient = $request->input('recipient');
     		$check_word = substr($recipient,0,4);
 
+    		$subject = $request->input('subject');
+
     		if($check_word=="ver.")
     		{
+    			$subject = $recipient .' '. $subject;
     			$recipient = env("MAIL_FROM_ADDRESS");
     		}
 
@@ -81,7 +85,7 @@ class WebhookController extends Controller
 			$mail_email->recipient = $recipient;
 			$mail_email->sender = $request->input('sender');
 			$mail_email->from = $request->input('from');
-			$mail_email->subject = $request->input('subject');
+			$mail_email->subject = $subject;
 			$mail_email->body_plain = $request->input('body-plain');
 			$mail_email->stripped_text = $request->input('stripped-text');
 			$mail_email->stripped_signature = $request->input('stripped-signature');
@@ -131,7 +135,7 @@ class WebhookController extends Controller
     			"token" => $pushover_app,
     			"user" => $pushover_user,
 				"title" => $request->input('from'),
-    			"message" => $request->input('subject'),
+    			"message" => $subject,
 				"url" => $url_link,
 				"url_title" => "View message",
   				),
