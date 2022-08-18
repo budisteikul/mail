@@ -10,7 +10,7 @@
     "require": {
     	"budisteikul/coresdk": "dev-master",
         "html2text/html2text": "^4.2",
-        "cloudinary/cloudinary_php": "^2.7"
+        "cloudinary/cloudinary_php": "^1.19"
     },
     "autoload": {
    		"psr-4": {
